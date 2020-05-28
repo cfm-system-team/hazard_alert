@@ -79,11 +79,11 @@ QRコードを読み取っていただくと、メールアドレス登録画面
 QRコードを読み取ってメールアドレスを登録する利用者用の利用規約を表示するためのファイルです。  
 ご自身の利用シーンに合わせて、こちらのファイルに規約を定義してください。  
 
-* resources/views/pop_pdf.blade.php  
+* resources/views/group/pop_pdf.blade.php  
 生成したQRコードを三角ポップ用のレイアウトにはめ込んだPDFを表示するためのファイルです。  
 ご自身の利用シーンに合わせて、こちらのファイルにデザインを組み込んでください。  
 
-* resources/views/poster_pdf.blade.php  
+* resources/views/group/poster_pdf.blade.php  
 生成したQRコードをA4サイズのレイアウトにはめ込んだPDFを表示するためのファイルです。  
 ご自身の利用シーンに合わせて、こちらのファイルにデザインを組み込んでください。  
 
