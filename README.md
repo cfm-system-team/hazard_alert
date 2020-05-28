@@ -35,7 +35,7 @@ $ mv composer.phar /usr/local/bin/composer
 Laravelの詳細につきましては、[Laravel公式サイト](http://laravel.jp/)をご確認ください。
 ```bash
 $ git clone https://github.com/cfm-system-team/hazard_alert.git
-$ cd tracking
+$ cd hazard_alert
 $ composer install
 $ cp .env.sample .env
 $ php artisan key:generate
