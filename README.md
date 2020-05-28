@@ -87,6 +87,43 @@ QRコードを読み取ってメールアドレスを登録する利用者用の
 生成したQRコードをA4サイズのレイアウトにはめ込んだPDFを表示するためのファイルです。
 ご自身の利用シーンに合わせて、こちらのファイルにデザインを組み込んでください。
 
+# Contribution
+hazard_alertはOSSとして開発されており、IssueやPull requestの管理はすべてGitHub上で行われています。
+そのため、バグ報告や改善の提案・修正などは以下の方法で行うことができます。これらはいつでも歓迎しています。
+なお、開発スケジュールの都合上、リクエストの受付を停止させていただく場合がございますがご了承ください。
+
+### Issues
+バグ報告や改善の提案、実装の方針の相談などは、GitHubの[Issues](https://github.com/cfm-system-team/hazard_alert/issues)より行うことができます。
+* タイトルを見ただけで話題が分かるようにしてください
+* ひとつのIssueの話題はひとつにしてください
+
+[issueの作成はこちらから行えます。](https://github.com/cfm-system-team/hazard_alert/issues/new)
+
+### Pull requests
+バグ修正・改善の実装は、GitHubの[Pull requests](https://github.com/cfm-system-team/hazard_alert/pulls)より行うことができます。
+
+基本的にドキュメントやコードの変更は直接Pull requestで送っていただければと思います。
+しかし、新機能の追加や規格の制約の変更、実装の方針の相談があるものなどは、まずIssueの作成をしてください。
+
+また、複数の範囲にわたる問題を解決する場合は、1つのPull requestに対して1つのトピックになるように分割し、なるべく小さな変更のみを含むように努めてください。
+
+詳細は以下のPull requestの作成方法を参考にしてください。
+
+## Pull requestの作成方法
+hazard_alertを変更しGitHubでPull requestを作成する方法を紹介します。以下の2通りがあります。
+
+### GitHub上で編集する
+ドキュメントの小さな変更や、コメント中のtypoの修正などは、GitHub上での編集が便利です。
+[Editing files in another user's repository](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-another-users-repository) を参考にしてください。
+
+### ローカルで編集する
+1.　`cfm-system-team/hazard_alert` をforkし、手元にcloneする  
+2.　ブランチを作る `git checkout -b hogehoge`  
+3.　変更を加える  
+4.　エラーが発生しないことを確認し、変更をコミットする  
+5.　forkしたリポジトリにpushする  
+6.　Pull Requestを送る  
+
 # Author
 
 * クリプトン・フューチャー・メディア株式会社
