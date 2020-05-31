@@ -41,5 +41,8 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
 
+    - name: Run lint
+      run: composer run-script lint
+
     - name: Run test suite
       run: composer test
