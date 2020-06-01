@@ -37,7 +37,7 @@ Laravelの詳細につきましては、[Laravel公式サイト](http://laravel.
 $ git clone https://github.com/cfm-system-team/hazard_alert.git
 $ cd hazard_alert
 $ composer install
-$ cp .env.sample .env
+$ cp .env.example .env
 $ php artisan key:generate
 $ vi .env # データベースなどの環境情報を設定
 $ php artisan migrate
