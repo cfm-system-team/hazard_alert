@@ -28,7 +28,7 @@ class DropUniqueToRecipientsTable extends Migration
     {
         Schema::table('recipients', function (Blueprint $table) {
             $table->unique(['group_id', 'email']);
-            $table->dropIndex('group_id');
+            $table->dropIndex('recipients_group_id_index');
         });
     }
 }
