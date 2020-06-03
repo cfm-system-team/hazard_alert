@@ -22,6 +22,12 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+    - name: Update
+      run: sudo apt-get update
+      
+    - name: Upgrade google-chrome
+      run: sudo apt-get upgrade google-chrome-stable -y
+
     - name: Start mysql
       run: sudo /etc/init.d/mysql start        
 
@@ -51,7 +57,7 @@ jobs:
       run: composer run-script lint
 
     - name: Upgrade Chrome Driver
-      run: php artisan dusk:chrome-driver 83
+      run: php artisan dusk:chrome-driver
 
     - name: Start Chrome Driver
       run: ./vendor/laravel/dusk/bin/chromedriver-linux &
