@@ -20,7 +20,7 @@ jobs:
         tools: composer
 
     - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      run: php -r "file_exists('.env') || copy('.env.dusk.testing', '.env');"
 
     - name: Update
       run: sudo apt-get update
@@ -63,7 +63,7 @@ jobs:
       run: ./vendor/laravel/dusk/bin/chromedriver-linux &
 
     - name: Run Laravel Server
-      run: php artisan serve --env=dusk.testing &
+      run: php artisan serve &
 
     - name: Run test suite
       run: composer test
