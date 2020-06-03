@@ -22,6 +22,9 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+    - name: Start mysql
+    - run: sudo /etc/init.d/mysql start        
+
     - name: Create Database
       run: mysql --user="test" --password="test" -e "CREATE DATABASE testing character set UTF8mb4 collate utf8mb4_bin;"
 
