@@ -51,7 +51,7 @@ jobs:
       run: composer run-script lint
 
     - name: Upgrade Chrome Driver
-      run: php artisan dusk:chrome-driver --all
+      run: php artisan dusk:chrome-driver 83
 
     - name: Start Chrome Driver
       run: ./vendor/laravel/dusk/bin/chromedriver-linux &
