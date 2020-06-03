@@ -63,7 +63,7 @@ jobs:
       run: ./vendor/laravel/dusk/bin/chromedriver-linux &
 
     - name: Run Laravel Server
-      run: php artisan serve &
+      run: php artisan serve --env=dusk.testing &
 
     - name: Run test suite
       run: composer test
