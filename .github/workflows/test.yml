@@ -20,7 +20,19 @@ jobs:
         tools: composer
 
     - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      run: php -r "file_exists('.env') || copy('.env.dusk.testing', '.env');"
+
+    - name: Update
+      run: sudo apt-get update
+      
+    - name: Upgrade google-chrome
+      run: sudo apt-get upgrade google-chrome-stable -y
+
+    - name: Start mysql
+      run: sudo /etc/init.d/mysql start        
+
+    - name: Create Database
+      run: mysql --user="root" --password="root" -e "CREATE DATABASE testing character set UTF8mb4 collate utf8mb4_bin;"
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -43,6 +55,15 @@ jobs:
 
     - name: Run lint
       run: composer run-script lint
+
+    - name: Upgrade Chrome Driver
+      run: php artisan dusk:chrome-driver
+
+    - name: Start Chrome Driver
+      run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+
+    - name: Run Laravel Server
+      run: php artisan serve &
 
     - name: Run test suite
       run: composer test
