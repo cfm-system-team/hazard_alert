@@ -43,18 +43,7 @@ class RecipientController extends Controller
         }
         $group = Group::whereHash($hash)
             ->firstOrFail();
-        $period = '';
-        if (!empty($group->start_at) && !empty($group->end_at)) {
-            $start_at = new Carbon($group->start_at);
-            $end_at = new Carbon($group->end_at);
-            $period = '開催期間：' . $start_at->format('Y年n月j日 G時i分') . ' ～ ' . $end_at->format('Y年n月j日 G時i分');
-        } elseif (!empty($group->start_at)){
-            $start_at = new Carbon($group->start_at);
-            $period = '開催期間：' . $start_at->format('Y年n月j日 G時i分') . ' から';
-        } elseif (!empty($group->end_at)) {
-            $end_at = new Carbon($group->end_at);
-            $period = '開催期間：' . $end_at->format('Y年n月j日 G時i分') . ' まで';
-        }
+        $period = $this->getPeriod($group);
         return view('recipient/register', ['group' => $group, 'period' => $period]);
     }
 
@@ -123,18 +112,7 @@ class RecipientController extends Controller
         }
         $group = Group::whereHash($hash)
             ->firstOrFail();
-        $period = '';
-        if (!empty($group->start_at) && !empty($group->end_at)) {
-            $start_at = new Carbon($group->start_at);
-            $end_at = new Carbon($group->end_at);
-            $period = '開催期間：' . $start_at->format('Y年n月j日 G時i分') . ' ～ ' . $end_at->format('Y年n月j日 G時i分');
-        } elseif (!empty($group->start_at)){
-            $start_at = new Carbon($group->start_at);
-            $period = '開催期間：' . $start_at->format('Y年n月j日 G時i分') . ' から';
-        } elseif (!empty($group->end_at)) {
-            $end_at = new Carbon($group->end_at);
-            $period = '開催期間：' . $end_at->format('Y年n月j日 G時i分') . ' まで';
-        }
+        $period = $this->getPeriod($group);
         return view('recipient/unregister', ['group' => $group, 'id' => $request->get('id'), 'period' => $period]);
     }
 
@@ -250,5 +228,24 @@ class RecipientController extends Controller
         header('Content-Disposition: attachment; filename="' . $file_name .'"');
         echo mb_convert_encoding($text, 'SJIS', 'UTF-8');
         exit;
+    }
+
+
+    /**
+     * 開催期間を文字列として取得
+     *
+     * @param Group $group
+     * @return string
+     */
+    private function getPeriod(Group $group){
+        $period = '';
+        if (!empty($group->start_at) && !empty($group->end_at)) {
+            $period = '開催期間：' . $group->start_at->format('Y年n月j日 G時i分') . ' ～ ' . $group->end_at->format('Y年n月j日 G時i分');
+        } elseif (!empty($group->start_at)){
+            $period = '開催期間：' . $group->start_at->format('Y年n月j日 G時i分') . ' から';
+        } elseif (!empty($group->end_at)) {
+            $period = '開催期間：' . $group->end_at->format('Y年n月j日 G時i分') . ' まで';
+        }
+        return $period;
     }
 }

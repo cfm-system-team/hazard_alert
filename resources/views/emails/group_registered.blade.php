@@ -7,13 +7,13 @@ QRコードの生成が完了しました。
 ---------------------------------------
 @if($group->start_at && $group->end_at)
 ■開催期間
-{{ \Carbon\Carbon::parse($group->start_at)->format('Y年n月j日 G時i分') }} ～ {{ \Carbon\Carbon::parse($group->end_at)->format('Y年n月j日 G時i分') }}
+{{ $group->start_at->format('Y年n月j日 G時i分') }} ～ {{ $group->end_at->format('Y年n月j日 G時i分') }}
 @elseif($group->start_at)
 ■開催期間
-{{ \Carbon\Carbon::parse($group->start_at)->format('Y年n月j日 G時i分') }} から
+{{ $group->start_at->format('Y年n月j日 G時i分') }} から
 @elseif($group->end_at)
 ■開催期間
-{{ \Carbon\Carbon::parse($group->end_at)->format('Y年n月j日 G時i分') }} まで
+{{ $group->end_at->format('Y年n月j日 G時i分') }} まで
 @endif
 
 ■店舗名・イベント名等
