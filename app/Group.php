@@ -17,8 +17,8 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property string $zip_code
  * @property string $address
- * @property string|null $start_at
- * @property string|null $end_at
+ * @property Carbon|null $start_at
+ * @property Carbon|null $end_at
  * @property string $owner
  * @property string $telephone
  * @property string $hash
@@ -45,7 +45,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Group whereZipCode($value)
  * @method static \Illuminate\Database\Query\Builder|Group withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Group withoutTrashed()
- * @property string|null $agreed_at
+ * @property Carbon|null $agreed_at
  * @property string $email
  * @method static Builder|Group whereAgreedAt($value)
  * @method static Builder|Group whereEmail($value)
@@ -71,10 +71,22 @@ class Group extends Model
     ];
 
     /**
+     * @see Model::$dates
+     */
+    protected $dates = [
+        'start_at',
+        'end_at',
+        'agreed_at'
+    ];
+
+    /**
      * @see Model::$casts
      */
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
+        'start_at' => 'datetime:c',
+        'end_at' => 'datetime:c',
+        'agreed_at' => 'datetime:c'
     ];
 
     /**
