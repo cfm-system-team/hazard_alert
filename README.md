@@ -69,6 +69,15 @@ QRコードを読み取っていただくと、メールアドレス登録画面
 /recipient/search
 ```
 
+4. 一定期間経過後に利用者情報を削除  
+
+下記のコマンドをプロジェクト直下で実行すると、daysに指定した日数以前の利用者情報（メールアドレス）を削除することができます。   
+
+```bash
+$ php artisan command:delete_email {days}
+```
+
+
 # Note
 本システムを利用する上で、下記のファイルに関しては、ご自身で定義する必要があります。
 * resources/views/terms_organization.blade.php  
@@ -120,7 +129,11 @@ hazard_alertを変更しGitHubでPull requestを作成する方法を紹介し�
 1.　`cfm-system-team/hazard_alert` をforkし、手元にcloneする  
 2.　ブランチを作る `git checkout -b hogehoge`  
 3.　変更を加える  
-4.　エラーが発生しないことを確認し、変更をコミットする  
+4.　下記のコマンドをプロジェクト直下で実行し、エラーが発生しないことを確認する  
+※Laravel Duskによるテストとなっています。詳細は[こちら](https://readouble.com/laravel/6.x/ja/dusk.html)をご確認ください  
+```bash
+$ php artisan dusk
+```
 5.　forkしたリポジトリにpushする  
 6.　Pull Requestを送る  
 
