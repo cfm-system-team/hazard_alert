@@ -1,0 +1,16 @@
+# Do not modify this file by hand!
+
+"/var/log/nginx/my_projcet_access.log" "/var/log/nginx/my_project_error.log" {
+  missingok
+  notifempty
+  daily
+  rotate 7
+  create 644 www-data root
+  compress
+  delaycompress
+  notifempty
+  sharedscripts
+  postrotate
+      [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
+  endscript
+}
