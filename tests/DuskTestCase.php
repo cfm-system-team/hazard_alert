@@ -13,7 +13,7 @@ abstract class DuskTestCase extends BaseTestCase
 
     protected function baseUrl()
     {
-        return env('DUSK_TEST_URL', parent::baseUrl());
+        return env('DUSK_TEST_URL') ?: parent::baseUrl();
     }
 
     /**
