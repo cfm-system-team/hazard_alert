@@ -11,6 +11,11 @@ abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected function baseUrl()
+    {
+        return env('DUSK_TEST_URL', parent::baseUrl());
+    }
+
     /**
      * Prepare for Dusk test execution.
      *

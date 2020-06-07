@@ -14,9 +14,6 @@ yarn-error.log
 # Ignore PhpStorm setting files.
 .idea/
 
-# testing env file
-.env.testing
-
 # npm build deliverable.
 /public/**/*.css
 /public/**/*.js
