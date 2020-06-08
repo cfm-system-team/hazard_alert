@@ -39,14 +39,14 @@ $ docker-compose up -d build
 
 ## アプリケーションの設定
 
-`startup.sh` を実行
+`setup.sh` を実行
 アプリケーションの設定ファイル (.env) を作成､ライブラリのインストール､テストを実行します｡  
 
 ```bash
-$ docker-compose exec php sh docker/startup.sh
+$ docker-compose exec php sh docker/setup.sh
 ```
 
-以下に `docker/startup.sh` で実行される処理を記します｡  
+以下に `docker/setup.sh` で実行される処理を記します｡  
 
 ### アプリケーション設定ファイル作成
 
@@ -63,6 +63,8 @@ $ docker-compose exec php sh docker/startup.sh
 ### `APP_KEY` を生成
 
 作成した設定ファイルに `APP_KEY` を設定します｡  
+
+### ChromeDriver のインストール
 
 ### マイグレーションを実行
 

@@ -44,5 +44,6 @@ php artisan key:generate --env=testing
 php artisan key:generate --env=dusk.develop
 php artisan migrate
 
+php artisan dusk:chrome-driver
 php artisan dusk --env=develop
 $PROJECT_ROOT/vendor/bin/phpunit --testdox
