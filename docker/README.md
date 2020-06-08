@@ -43,7 +43,7 @@ $ docker-compose up -d build
 アプリケーションの設定ファイル (.env) を作成､ライブラリのインストール､テストを実行します｡  
 
 ```bash
-$ sh docker/startup.sh
+$ docker-compose exec php sh docker/startup.sh
 ```
 
 以下に `docker/startup.sh` で実行される処理を記します｡  
