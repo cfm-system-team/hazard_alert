@@ -15,6 +15,7 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
+            <directory suffix="Test.php">./tests/Browser</directory>
         </whitelist>
     </filter>
     <php>

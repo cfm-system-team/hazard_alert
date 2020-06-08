@@ -18,3 +18,7 @@ yarn-error.log
 /public/**/*.css
 /public/**/*.js
 mix-manifest.json
+
+# testing env file
+.env.testing
+.env.dusk.develop
