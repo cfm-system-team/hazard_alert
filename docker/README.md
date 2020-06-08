@@ -71,6 +71,13 @@ $ docker-compose exec php sh docker/startup.sh
 ### 各種テストを実行
 
 ブラウザテストおよび､ `Feature` ､ `Unit` テストを実行します｡  
+また､ブラウザテストは `.env.dusk.develop` を参照するため､ `--env=develop` オプションを指定しています｡  
+開発環境でのテストでは `--env=develop` オプションを使ってください
+
+```bash
+$ php artisan dusk --env=develop
+```
+
 
 ## PhpStorm 向け
 
