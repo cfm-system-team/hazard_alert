@@ -1,0 +1,4 @@
+*.log
+/mariadb/data/*
+/mysql/data/*
+.env

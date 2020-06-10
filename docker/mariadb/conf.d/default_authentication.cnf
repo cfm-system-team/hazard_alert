@@ -1,0 +1,4 @@
+[mysqld]
+default_authentication_plugin= mysql_native_password
+innodb_flush_method=O_DSYNC
+innodb_use_native_aio=OFF

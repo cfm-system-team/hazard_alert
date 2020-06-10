@@ -13,3 +13,12 @@ yarn-error.log
 
 # Ignore PhpStorm setting files.
 .idea/
+
+# npm build deliverable.
+/public/**/*.css
+/public/**/*.js
+mix-manifest.json
+
+# testing env file
+.env.testing
+.env.dusk.develop

@@ -6,7 +6,6 @@ use App\Group;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
-use Tests\Browser\Pages\HomePage;
 use Tests\DuskTestCase;
 use Throwable;
 
