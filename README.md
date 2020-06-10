@@ -17,7 +17,7 @@
 ```bash
 $ yum install epel-release
 $ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-$ yum install --enablerepo=remi,remi-php74 php php-pdo php-mbstring php-dom php-gd php-mysqlnd
+$ yum install --enablerepo=remi,remi-php74 php php-pdo php-mbstring php-dom php-gd php-mysqlnd php-zip
 ```
 
 * composer
