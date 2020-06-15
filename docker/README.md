@@ -32,7 +32,7 @@ $ docker-compose up -d --build
   - DB 名 (test) : app-test
   - ポート: 3306
   - ユーザー: default
-  - ユーザー: secret
+  - パスワード: secret
   - root パスワード: root
 - `phpmyadmin`
   - `http://localhost:8000`
