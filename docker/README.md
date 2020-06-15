@@ -19,7 +19,7 @@ $ cp docker/.env.example docker/.env
 
 ```bash
 $ cd docker
-$ docker-compose up -d build
+$ docker-compose up -d --build
 ```
 
 ### 各コンテナ接続情報
