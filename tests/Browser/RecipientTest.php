@@ -72,7 +72,10 @@ class RecipientTest extends DuskTestCase
             $browser
                 ->loginAs($user)
                 ->visit('/recipient/search')
-                ->select('search[group_id]', $group->id)
+                ->click('.select2-container')
+                ->type('.select2-search__field', $group->name)
+                ->pause(1500)
+                ->click('.select2-results__option')
                 ->type('search[start_at]', now()->subHour())
                 ->type('search[end_at]', now()->addHour())
                 ->click('.btn')
