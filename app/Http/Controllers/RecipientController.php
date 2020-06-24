@@ -154,8 +154,7 @@ class RecipientController extends Controller
      * @return Application|Factory|View
      */
     public function searchView(){
-        $groups = Group::all();
-        return view('recipient/search', ['groups' => $groups]);
+        return view('recipient/search');
     }
 
     /**

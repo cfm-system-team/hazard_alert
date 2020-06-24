@@ -21,13 +21,6 @@ use phpDocumentor\Reflection\Types\Collection;
                     <label for="group">店舗・イベント名等 <span class="badge badge-danger">必須</span></label>
                     <select class="form-control select2" name="search[group_id]" class="@error('search.group_id') is-invalid @enderror form-control">
                         <option></option>
-                        @foreach($groups as $key => $group)
-                            @if($group->id == old('search.group_id'))
-                                <option value="{{$group->id}}" data-key="{{$key}}" selected>{{$group->name}}</option>
-                            @else
-                                <option value="{{$group->id}}" data-key="{{$key}}">{{$group->name}}</option>
-                            @endif
-                        @endforeach
                     </select>
                     @error('search.group_id')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -105,6 +98,7 @@ use phpDocumentor\Reflection\Types\Collection;
 @endsection
 
 @section('scripts')
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
     <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
@@ -115,7 +109,30 @@ use phpDocumentor\Reflection\Types\Collection;
         $(function(){
             $('.select2').select2({
                 theme: 'bootstrap',
-                placeholder: 'リストから選択してください'
+                placeholder: 'リストから選択してください',
+                ajax: {
+                    url: "/group/select2_search",
+                    dataType: 'json',
+                    delay: 250,
+                    data: (params) => {
+                        return {
+                            q: params.term,
+                        }
+                    },
+                    processResults: (data, params) => {
+                        const results = data.groups.map(group => {
+                            return {
+                                id: group.id,
+                                text: group.name,
+                            };
+                        });
+                        return {
+                            results: results,
+                        }
+                    },
+                    cache: true,
+                    minimumInputLength: 1,
+                },
             });
         });
     </script>
@@ -142,12 +159,25 @@ use phpDocumentor\Reflection\Types\Collection;
         });
 
         $(function() {
-            groups = <?php echo $groups;?>;
             $('select').change(function() {
-                let key = $("option:selected", this).data('key');
-                $('p#address').text("住所　　：" + groups[key].address);
-                $('p#telephone').text("電話番号：" + groups[key].telephone);
-                $('#group_info').show();
+                let group_id = $("option:selected", this).val();
+                $.ajax({
+                    url:'/group/select2_search?group_id=' + group_id,
+                    type:'GET',
+                    dataType: 'json'
+                }).then(
+                    function (json) {
+                        let groups_len = Object.keys(json.groups).length;
+                        if(groups_len !== 0){
+                            let groups = json.groups;
+                            for(let i = 0; i < groups_len; i++){
+                                $('p#address').text("住所　　：" + groups[i].address);
+                                $('p#telephone').text("電話番号：" + groups[i].telephone);
+                                $('#group_info').show();
+                            }
+                        }
+                    }
+                );
             });
         });
     </script>
