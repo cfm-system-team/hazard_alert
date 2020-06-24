@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Mail\GroupRegistered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
@@ -174,5 +175,27 @@ class GroupController extends Controller
             ->generate($url));
 
         return response(base64_decode($base64))->header('Content-type', 'image/png');
+    }
+
+    /**
+     * Select2用に施設を検索する。
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function select2Search(Request $request){
+        $rule = [
+            'q' => 'max:255',
+            'group_id' => 'exists:App\Group,id'
+        ];
+        $request->validate($rule);
+        if (!empty($request->input('group_id'))) {
+            $groups = Group::whereId($request->input('group_id'))->get();
+        } elseif (!empty($request->input('q'))) {
+            $groups = Group::where('name', 'LIKE', '%' . $request->input('q') . '%')->get();
+        } else {
+            $groups = Group::all();
+        }
+        return response()->json(['groups' => $groups]);
     }
 }
