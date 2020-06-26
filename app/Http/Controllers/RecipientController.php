@@ -33,7 +33,7 @@ class RecipientController extends Controller
      */
     public function registerView($hash){
         // ガラケー対応
-        if (empty($_SERVER['HTTPS'])) {
+        if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
             $ua = $_SERVER['HTTP_USER_AGENT'];
             if(!((strpos($ua, 'DoCoMo') !== false) || (strpos($ua, 'FOMA') !== false) || (strpos($ua, 'SoftBank') !== false))) {
                 $url = 'https://' . $_SERVER['HTTP_HOST'] . '/recipient/register/' . $hash;
@@ -102,7 +102,7 @@ class RecipientController extends Controller
             'id' => 'required|exists:App\Recipient,id'
         ]);
         // ガラケー対応
-        if (empty($_SERVER['HTTPS'])) {
+        if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
             $ua = $_SERVER['HTTP_USER_AGENT'];
             if(!((strpos($ua, 'DoCoMo') !== false) || (strpos($ua, 'FOMA') !== false) || (strpos($ua, 'SoftBank') !== false))) {
                 $url = 'https://' . $_SERVER['HTTP_HOST'] . '/recipient/unregister/' . $hash . '?' . http_build_query($request->all());
