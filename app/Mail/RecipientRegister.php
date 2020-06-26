@@ -12,12 +12,13 @@ class RecipientRegister extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /** @var array<string,mixed> */
     protected $mail_data;
 
     /**
      * Create a new message instance.
      *
-     * @param $mail_data
+     * @param array<string,mixed> $mail_data
      */
     public function __construct($mail_data)
     {

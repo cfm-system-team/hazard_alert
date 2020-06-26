@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class GroupController extends Controller
@@ -17,9 +18,8 @@ class GroupController extends Controller
     /**
      * グループの情報を表示。
      *
-     * @param $hash
-     * グループのハッシュ。
-     * @return Response
+     * @param string $hash グループのハッシュ。
+     * @return View
      */
     public function show($hash)
     {
@@ -32,7 +32,7 @@ class GroupController extends Controller
     /**
      * 新しいグループの登録フォームを表示。
      *
-     * @return Response
+     * @return View
      */
     public function create()
     {
@@ -43,7 +43,7 @@ class GroupController extends Controller
      * 新しいグループを登録。
      *
      * @param Request $request
-     * @return Response
+     * @return View
      */
     public function store(Request $request)
     {
@@ -100,8 +100,7 @@ class GroupController extends Controller
     /**
      * ポスター用のPDFを表示。
      *
-     * @param $hash
-     * グループのハッシュ。
+     * @param string $hash グループのハッシュ。
      * @return mixed
      */
     public function poster_pdf($hash)
@@ -125,8 +124,7 @@ class GroupController extends Controller
     /**
      * POP用のPDFを表示。
      *
-     * @param $hash
-     * グループのハッシュ。
+     * @param string $hash グループのハッシュ。
      * @return mixed
      */
     public function pop_pdf($hash)
@@ -150,10 +148,8 @@ class GroupController extends Controller
     /**
      * PNG画像を表示。
      *
-     * @param $size
-     * 画像の一辺の大きさ。
-     * @param $hash
-     * グループのハッシュ。
+     * @param int $size 画像の一辺の大きさ。
+     * @param string $hash グループのハッシュ。
      * @return mixed
      */
     public function png($size, $hash)
