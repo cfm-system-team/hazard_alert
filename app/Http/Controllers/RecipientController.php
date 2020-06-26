@@ -20,15 +20,14 @@ use Throwable;
 class RecipientController extends Controller
 {
     /**
-     * @var
-     * 受信者
+     * @var Recipient 受信者
      */
     private $recipient;
 
     /**
      * メールアドレス登録画面の表示
      *
-     * @param $hash
+     * @param string $hash
      * @return Application|Factory|RedirectResponse|Redirector|View
      * @throws \Exception
      */
@@ -89,7 +88,7 @@ class RecipientController extends Controller
     /**
      * メールアドレス登録解除画面の表示
      *
-     * @param $hash
+     * @param string $hash
      * @param Request $request
      * @return Application|Factory|RedirectResponse|Redirector|View
      */

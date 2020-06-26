@@ -7,14 +7,16 @@ use Illuminate\Contracts\Validation\Rule;
 
 class EmailExists implements Rule
 {
+    /** @var string */
     private $email;
+    /** @var string */
     private $group_id;
 
     /**
      * Create a new rule instance.
      *
-     * @param $email
-     * @param $group_id
+     * @param string $email
+     * @param string $group_id
      */
     public function __construct($email, $group_id)
     {
