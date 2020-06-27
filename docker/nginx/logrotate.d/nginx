@@ -1,6 +1,6 @@
 # Do not modify this file by hand!
 
-"/var/log/nginx/my_projcet_access.log" "/var/log/nginx/my_project_error.log" {
+"/var/log/nginx/my_project_access.log" "/var/log/nginx/my_project_error.log" {
   missingok
   notifempty
   daily
