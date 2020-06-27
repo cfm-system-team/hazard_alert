@@ -33,7 +33,7 @@ class RecipientController extends Controller
      */
     public function registerView($hash){
         // ガラケー対応
-        if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
+        if ($this->isHttp()) {
             $ua = $_SERVER['HTTP_USER_AGENT'];
             if(!((strpos($ua, 'DoCoMo') !== false) || (strpos($ua, 'FOMA') !== false) || (strpos($ua, 'SoftBank') !== false))) {
                 $url = 'https://' . $_SERVER['HTTP_HOST'] . '/recipient/register/' . $hash;
@@ -102,7 +102,7 @@ class RecipientController extends Controller
             'id' => 'required|exists:App\Recipient,id'
         ]);
         // ガラケー対応
-        if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
+        if ($this->isHttp()) {
             $ua = $_SERVER['HTTP_USER_AGENT'];
             if(!((strpos($ua, 'DoCoMo') !== false) || (strpos($ua, 'FOMA') !== false) || (strpos($ua, 'SoftBank') !== false))) {
                 $url = 'https://' . $_SERVER['HTTP_HOST'] . '/recipient/unregister/' . $hash . '?' . http_build_query($request->all());
@@ -228,6 +228,24 @@ class RecipientController extends Controller
         exit;
     }
 
+
+    /**
+     * HTTPでのアクセスか否かを判定
+     *
+     * @return boolean
+     */
+    private function isHttp(){
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) { // ロードバランサなどから来ているか判定
+            // httpアクセスか判定
+            if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
+                return TRUE;
+            }
+        } elseif (empty($_SERVER['HTTPS'])) { // 通常アクセス時でhttpアクセスか判定
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
     /**
      * 開催期間を文字列として取得
