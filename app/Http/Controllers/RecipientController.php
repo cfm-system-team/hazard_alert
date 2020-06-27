@@ -232,18 +232,18 @@ class RecipientController extends Controller
     /**
      * HTTPでのアクセスか否かを判定
      *
-     * @return boolean
+     * @return bool
      */
     private function isHttp(){
         if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) { // ロードバランサなどから来ているか判定
             // httpアクセスか判定
             if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http') {
-                return TRUE;
+                return true;
             }
         } elseif (empty($_SERVER['HTTPS'])) { // 通常アクセス時でhttpアクセスか判定
-            return TRUE;
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     }
 
