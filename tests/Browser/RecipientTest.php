@@ -77,7 +77,9 @@ class RecipientTest extends DuskTestCase
                 ->pause(1500)
                 ->click('.select2-results__option')
                 ->type('search[start_at]', now()->subHour())
+                ->pause(500)
                 ->type('search[end_at]', now()->addHour())
+                ->pause(500)
                 ->click('.btn')
                 ->assertSee('検索結果をダウンロード')
                 ->assertSee($group->name);

@@ -160,6 +160,7 @@ return [
         'group.start_at' => '開始日時',
         'group.end_at' => '終了日時',
         'group.agreed' => '利用規約への同意',
+        'csv' => 'CSVファイル',
         'recipient.email' => 'メールアドレス',
         'recipient.email_confirmation' => 'メールアドレスの確認',
         'search.group_id' => '店舗名・イベント名・会場名',

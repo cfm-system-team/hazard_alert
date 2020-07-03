@@ -35,5 +35,7 @@ Route::middleware('auth.basic')->group(function () {
     Route::get('recipient/search', 'RecipientController@searchView');
     Route::post('recipient/search', 'RecipientController@search');
     Route::post('recipient/download', 'RecipientController@download');
+    Route::get('group/import', 'GroupController@importForm');
+    Route::post('group/import', 'GroupController@import');
     Route::get('group/select2_search', 'GroupController@select2Search');
 });

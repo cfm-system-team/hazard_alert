@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Group;
+use App\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -55,6 +56,25 @@ class GroupTest extends DuskTestCase
             $browser
                 ->visit('/group/' . $group->hash)
                 ->assertSee($group->name);
+        });
+    }
+
+    /**
+     * 事業者csvインポートテスト
+     *
+     * @return void
+     * @throws Throwable
+     */
+    public function testImportTest()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+            $browser
+                ->loginAs($user)
+                ->visit('/group/import')
+                ->attach('csv', public_path('sample/sample_data.csv'))
+                ->click('#submit_button')
+                ->assertSee('登録を完了しました');
         });
     }
 }
