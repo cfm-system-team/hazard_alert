@@ -32,6 +32,7 @@ class GroupTest extends DuskTestCase
                 ->type('group[telephone]', $faker->randomNumber(9, true))
                 ->type('group[email]', $faker->email)
                 ->type('group[zip_code]', $faker->randomNumber(7, true))
+                ->pause(500)
                 ->type('group[address]', $faker->address)
                 ->radio('group[has_period]', 'true')
                 ->type('group[start_at]', now()->format('Y-m-d H:i:00'))
