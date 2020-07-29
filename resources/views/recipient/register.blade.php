@@ -76,15 +76,9 @@
 @section('scripts')
     <script type="text/javascript">
         function checkTerms(is_checked){
-            if(is_checked === true){
-                document.getElementById("submit").disabled = false;
-            } else {
-                document.getElementById("submit").disabled = true;
-            }
+            document.getElementById("submit").disabled = is_checked !== true;
         }
-    </script>
 
-    <script type="text/javascript">
         $(function() {
             if ($('#check_terms').prop('checked') === false ){
                 $('#submit').prop("disabled", true);
@@ -117,6 +111,10 @@
             } else {
                 $("#submit_area").show();
             }
+        });
+
+        $('#submit').click(function () {
+            $(this).css('pointer-events','none');
         });
     </script>
 @endsection

@@ -13,8 +13,9 @@
         また、登録いただいた情報はメール受信を希望するユーザーに公開されます。
     </p>
 
-    <form method="POST" action="">
+    <form method="POST" action="" class="h-adr">
         @csrf
+        <span class="p-country-name" style="display:none;">Japan</span>
 
         <div class="row">
             <div class="col-md-12">
@@ -66,7 +67,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="group[zip_code]">郵便番号 <span class="badge badge-danger">必須</span></label>
-                    <input id="group[zip_code]" name="group[zip_code]" type="text" value="{{ old('group.zip_code') }}" class="@error('group.zip_code') is-invalid @enderror form-control">
+                    <input id="group[zip_code]" name="group[zip_code]" type="text" value="{{ old('group.zip_code') }}" class="p-postal-code @error('group.zip_code') is-invalid @enderror form-control">
                     @error('group.zip_code')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -79,7 +80,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="group[address]">住所 <span class="badge badge-danger">必須</span></label>
-                    <input id="group[address]" name="group[address]" type="text" value="{{ old('group.address') }}" class="@error('group.address') is-invalid @enderror form-control">
+                    <input id="group[address]" name="group[address]" type="text" value="{{ old('group.address') }}" class="p-region p-locality p-street-address p-extended-address @error('group.address') is-invalid @enderror form-control">
                     @error('group.address')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -147,6 +148,7 @@
 @section('scripts')
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css">
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 
     <script type="text/javascript">
         // 送信ボタン制御。
