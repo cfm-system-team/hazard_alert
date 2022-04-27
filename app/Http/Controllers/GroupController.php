@@ -240,16 +240,33 @@ class GroupController extends Controller
 
             // 1行目はヘッダーなので、列数を記録してスキップ。
             if ($row_number === 0) {
-                $number_of_header_columns = count($row);
+                // 正しくパースされない場合があるため、再度カンマで分割する
+                foreach ($row as $value) {
+                    $split_values = explode(',', $value);
+                    $number_of_header_columns += count($split_values);
+                }
                 ++$row_number;
                 return 0;
             }
 
             // 列数チェック。
             if (count($row) !== $number_of_header_columns) {
-                $message = "{$row_number}行目: 列の数が正しくありません。";
-                ++$row_number;
-                throw new CsvNumberOfColumnsException($message);
+                // 正しくパースされない場合があるため、再度カンマで分割する
+                $tmp_row = [];
+                foreach ($row as $value) {
+                    $split_values = explode(',', $value);
+                    foreach ($split_values as $split_value) {
+                        $tmp_row[] = $split_value;
+                    }
+                }
+                // 再度列数チェック。
+                if (count($tmp_row) !== $number_of_header_columns) {
+                    $message = "{$row_number}行目: 列の数が正しくありません。";
+                    ++$row_number;
+                    throw new CsvNumberOfColumnsException($message);
+                }
+
+                $row = $tmp_row;
             }
 
             // バリデーションをかけるためにキーに名前を設定する。
