@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4.0",
-        "barryvdh/laravel-dompdf": "^1.0.0",
+        "barryvdh/laravel-dompdf": "^2.0.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^3.0",
