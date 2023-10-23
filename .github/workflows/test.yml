@@ -24,12 +24,12 @@ jobs:
 
     - name: Update
       run: sudo apt-get update
-      
+
     - name: Upgrade google-chrome
       run: sudo apt-get upgrade google-chrome-stable -y
 
     - name: Start mysql
-      run: sudo /etc/init.d/mysql start        
+      run: sudo /etc/init.d/mysql start
 
     - name: Create Database
       run: mysql --user="root" --password="root" -e "CREATE DATABASE testing character set UTF8mb4 collate utf8mb4_bin;"
@@ -57,7 +57,7 @@ jobs:
       run: composer run-script lint
 
     - name: Upgrade Chrome Driver
-      run: php artisan dusk:chrome-driver
+      run: php artisan dusk:chrome-driver 114
 
     - name: Start Chrome Driver
       run: ./vendor/laravel/dusk/bin/chromedriver-linux &
